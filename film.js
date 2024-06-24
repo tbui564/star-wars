@@ -1,3 +1,12 @@
+// Select container elements
+const film_title = document.getElementById("film-title");
+const release_div = document.getElementById("release");
+const director_div = document.getElementById("director");
+const episode_div = document.getElementById("episode");
+const characters_container = document.getElementById("characters-container");
+const planets_container = document.getElementById("planets-container");
+
+
 // Get ID value
 const sp = new URLSearchParams(window.location.search);
 const id = sp.get("id");
@@ -24,13 +33,11 @@ async function fetch_swapi(film_endpoint, character_endpoint, planet_endpoint) {
 async function display_to_html() {
     const [film, characters, planets] = await fetch_swapi(film_endpoint, character_endpoint, planet_endpoint);
 
-    // Select container elements
-    const film_title = document.getElementById("film-title");
-    const characters_container = document.getElementById("characters-container");
-    const planets_container = document.getElementById("planets-container");
-
-    // Update title
+    // Aggregate film information
     film_title.innerText = film.title;
+    release_div.innerText = film.release_date;
+    director_div.innerText = film.director;
+    episode_div.innerText = film.episode_id;
 
     // Aggregate characters
     for (const character in characters) {
