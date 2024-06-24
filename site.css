@@ -71,6 +71,12 @@ label {
 
 /* Character page */
 h1#name {
+  text-align: center;
+  margin: 50px;
+}
+
+h1#pName{
+  text-align: center;
   margin: 50px;
 }
 
@@ -120,6 +126,25 @@ section#films a {
   margin: 10px;
   border-radius: 5px;
   border: 1px solid var(--dark2);
+}
+
+
+.worldInfo{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: 20px;
+}
+
+.worldInfo p{
+  padding: 20px;
+  margin: 10px;
+}
+
+.worldInfo span {
+  font-weight: bold;
+  font-size: 1.1em;
+  font-family: Verdana, sans-serif;
 }
 
 /* Styling for film.html */
