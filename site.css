@@ -158,8 +158,9 @@ section#films a {
   gap: 0.25rem;
 }
 
-#characters-container div,
-#planets-container div {
+#characters-container a,
+#planets-container a {
+  text-decoration: none;
   width: fit-content;
   padding: 10px;
   margin: 10px;

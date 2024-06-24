@@ -41,14 +41,16 @@ async function display_to_html() {
 
     // Aggregate characters
     for (const character in characters) {
-        const char_div = document.createElement("div");
+        const char_div = document.createElement("a");
+        char_div.setAttribute("href", "#");
         char_div.innerText = characters[character].name;
         characters_container.appendChild(char_div);
     }
 
     // Aggregate planets
     for (const planet in planets) {
-        const planet_div = document.createElement("div");
+        const planet_div = document.createElement("a");
+        planet_div.setAttribute("href", "#");
         planet_div.innerText = planets[planet].name;
         planets_container.appendChild(planet_div);
     }
