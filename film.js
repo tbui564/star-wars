@@ -17,23 +17,27 @@ const film_endpoint = `https://swapi2.azurewebsites.net/api/films/${id}`;
 const character_endpoint = `https://swapi2.azurewebsites.net/api/films/${id}/characters`;
 const planet_endpoint = `https://swapi2.azurewebsites.net/api/films/${id}/planets`;
 
-async function fetch_swapi(film_endpoint, character_endpoint, planet_endpoint) {
-    // TODO: wrap fetch calls in a try-catch block 
-    try {
-        const film_response = await fetch(film_endpoint);
-        const character_response = await fetch(character_endpoint);
-        const planet_response = await fetch(planet_endpoint);
-        const film_json = await film_response.json();
-        const character_json = await character_response.json();
-        const planet_json = await planet_response.json();
-        return [film_json, character_json, planet_json];
-    } catch (e) {
-        console.error("Error caught, please handle it: ", e);
-    } 
+async function fetch_from_swapi(endpoints) {
+    const promises = endpoints.map(endpoint => fetch_from_endpoint(endpoint));
+
+    const results = await Promise.all(promises)
+        .then(responses => {
+            return responses;
+        })
+        .catch(error => console.error("Error resolving endpoint promises: ", error));
+
+    return results;
+}
+
+async function fetch_from_endpoint(endpoint) {
+    return fetch(endpoint)
+        .then(response => response.json())
+        .then(data => data)
+        .catch(error => console.error("Error fetching from endpoint: ", error));
 }
 
 async function display_to_html() {
-    const [film, characters, planets] = await fetch_swapi(film_endpoint, character_endpoint, planet_endpoint);
+    const [film, characters, planets] = await fetch_from_swapi([film_endpoint, character_endpoint, planet_endpoint]);
 
     // Aggregate film information
     film_title.innerText = film.title;
