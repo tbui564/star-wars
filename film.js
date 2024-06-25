@@ -20,6 +20,7 @@ const planet_endpoint = `https://swapi2.azurewebsites.net/api/films/${id}/planet
 async function fetch_swapi(film_endpoint, character_endpoint, planet_endpoint) {
     // TODO: wrap fetch calls in a try-catch block 
     try {
+
         const film_response = await fetch(film_endpoint);
         const character_response = await fetch(character_endpoint);
         const planet_response = await fetch(planet_endpoint);
