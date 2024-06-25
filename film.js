@@ -19,15 +19,17 @@ const planet_endpoint = `https://swapi2.azurewebsites.net/api/films/${id}/planet
 
 async function fetch_swapi(film_endpoint, character_endpoint, planet_endpoint) {
     // TODO: wrap fetch calls in a try-catch block 
-    const film_response = await fetch(film_endpoint);
-    const character_response = await fetch(character_endpoint);
-    const planet_response = await fetch(planet_endpoint);
-
-    const film_json = await film_response.json(); 
-    const character_json = await character_response.json(); 
-    const planet_json = await planet_response.json(); 
-
-    return [film_json, character_json, planet_json];
+    try {
+        const film_response = await fetch(film_endpoint);
+        const character_response = await fetch(character_endpoint);
+        const planet_response = await fetch(planet_endpoint);
+        const film_json = await film_response.json();
+        const character_json = await character_response.json();
+        const planet_json = await planet_response.json();
+        return [film_json, character_json, planet_json];
+    } catch (e) {
+        console.error("Error caught, please handle it: ", e);
+    } 
 }
 
 async function display_to_html() {
