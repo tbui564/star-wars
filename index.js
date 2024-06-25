@@ -3,7 +3,7 @@ let matchingCharacters = [];
 const charactersList = document.querySelector("#charactersList")
 
 document.addEventListener('DOMContentLoaded', getCharacters)
-
+// npx browser-sync start --server --files "*.html, *.js, *.css"
 async function getCharacters() {
   let url = 'https://swapi2.azurewebsites.net/api/characters';
 
